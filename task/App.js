@@ -1,6 +1,8 @@
 import React, { useState} from 'react';
 import { StyleSheet, Text, View, Button, TextInput, FlatList } from 'react-native';
 
+import GoalItem from './components/GoalItem';
+
 export default function App() {
 
   const [enteredGoal, setEnteredGoal] = useState('');
@@ -31,9 +33,7 @@ export default function App() {
       <FlatList 
         data={courseGoals} 
         renderItem={itemData => (
-          <View style={styles.listItem}>
-            <Text>{itemData.item.val}</Text>
-          </View>
+          <GoalItem title={itemData.item.val} />
         )}
       />
     </View>
@@ -59,11 +59,4 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     padding: 5
   },
-  listItem: {
-    padding: 10,
-    margin: 2,
-    backgroundColor: 'grey',
-    borderColor: 'black',
-    borderWidth: 1,
-  }
 });
