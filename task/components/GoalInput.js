@@ -6,7 +6,12 @@ const GoalInput = props => {
 
     const goalInputHandler = (e) => {
         setEnteredGoal(e);
-      }
+    }
+
+    const addGoalHandler = () => {
+        props.onAddGoal(enteredGoal);
+        setEnteredGoal('');
+    }
 
     return (
         <Modal visible={props.didWeModal} animationType="fade">
@@ -16,7 +21,14 @@ const GoalInput = props => {
                     onChangeText={goalInputHandler}
                     value={props.enteredGoal}
                 />
-                <Button title="Add" onPress={() => props.onAddGoal(enteredGoal)}></Button>
+                <View style={styles.buttonsSideXside}>
+                    <View style={styles.button} >
+                       <Button title="Add" onPress={addGoalHandler}></Button> 
+                    </View>
+                    <View styles={styles.button}>
+                        <Button title="Cancel" color="red" onPress={props.onCancel} />
+                    </View>
+                </View>
             </View>
         </Modal>
     )
@@ -35,7 +47,18 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center', 
         alignItems: 'center',
-      },     
+      },  
+      buttonsSideXside: {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          width: '65%',
+          // 60%  when compared to above container being 80%
+          // 80% would put buttons on either edge of the txtInput view being 80%
+          // leaves  space between letting the buttons dynamic sit on outside
+      },
+      button: {
+          width: '30%',
+      }   
 });
 
 export default GoalInput;

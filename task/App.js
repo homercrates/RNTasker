@@ -19,6 +19,10 @@ export default function App() {
     setIsAddTask(false);
   }
 
+  const cancelGoalHandler = () => {
+    setIsAddTask(false);
+  }
+
   const removeGoalHandler = (goalId) => {
     setCourseGoals( currentGoals => {
       return currentGoals.filter((goal) => goal.key !== goalId)
@@ -29,7 +33,7 @@ export default function App() {
     <View style={styles.container}>
       <Button title='Add Task' onPress={() => setIsAddTask(true)}/>
       <View style={styles.screen}>
-        <GoalInput onAddGoal={addGoalHandler} didWeModal={isAddTask} />
+        <GoalInput onAddGoal={addGoalHandler} didWeModal={isAddTask} onCancel={cancelGoalHandler} />
       </View>
       <Text>o0</Text>
       
